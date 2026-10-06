@@ -356,30 +356,108 @@ input:focus-visible {
     }
 }
 
-/* Breakpoint: 768px - Tablet */
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-    .main-container {
-        max-width: 32.5rem;
-        border-radius: 1.5rem;
-        height: auto;
-        min-height: 85vh;
+/* Breakpoint: 768px - Tablet
+   La vista deja de ser una "tarjeta de móvil" y ocupa todo el ancho
+   de la ventana; el contenido se mantiene centrado con un ancho máximo. */
+@media screen and (min-width: 768px) {
+    body {
+        display: block;
     }
+
+    .main-container {
+        max-width: none;
+        min-height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .header-banner {
+        padding: 2.5rem 2rem 3.5rem;
+    }
+
+    .logo {
+        max-width: 11.25rem;
+    }
+
+    /* Padding lateral fluido: nunca menos de 2rem y el contenido
+       nunca más ancho que 60rem, sin importar el tamaño de la ventana */
     .card-container {
-        padding: 2.1875rem 1.875rem;
+        margin-top: -2rem;
+        border-top-left-radius: 2.5rem;
+        border-top-right-radius: 2.5rem;
+        padding: 2.5rem max(2rem, calc((100% - 60rem) / 2)) 3rem;
+    }
+
+    .usuario__avatar {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .titulo {
+        margin: 2.25rem 0 2rem;
+    }
+
+    /* Botón con ancho limitado y centrado en pantallas grandes */
+    .btn-primario {
+        max-width: 20rem;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
-/* Breakpoint: 1024px - Desktop (Vista centrada con padding lateral) */
+/* Breakpoint: 1024px - Desktop (vista centrada con padding lateral) */
 @media screen and (min-width: 1024px) {
-    body {
-        background-color: var(--fondo-pagina-desktop);
-        padding: 2.5rem;
+    .header-banner {
+        padding: 3rem 2rem 4rem;
     }
 
-    .main-container {
-        max-width: 28.125rem;
-        min-height: 85vh;
-        border-radius: 1.75rem;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    .logo {
+        max-width: 12.5rem;
+    }
+
+    .card-container {
+        padding-top: 3rem;
+        padding-bottom: 4rem;
+    }
+}
+
+/* Check-in: en tablet el formulario mantiene un ancho cómodo; en desktop
+   el vuelo y el formulario se ubican lado a lado */
+@media screen and (min-width: 768px) {
+    .card-container > .vuelo,
+    .formulario-checkin {
+        max-width: 40rem;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+
+    .formulario-checkin {
+        margin-top: 2rem;
+        padding: 2rem;
+    }
+
+    .formulario-checkin .btn-primario {
+        max-width: none;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .card-container {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+        column-gap: 2rem;
+        align-items: start;
+    }
+
+    .usuario,
+    .titulo {
+        grid-column: 1 / -1;
+    }
+
+    .card-container > .vuelo,
+    .formulario-checkin {
+        max-width: none;
+        margin: 0;
     }
 }
